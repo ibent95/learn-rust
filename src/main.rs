@@ -5,7 +5,6 @@ use rand::Rng;
 fn main() {
     print_hello_world();
 
-
 	loop {
 		let s_n: i32 = generate_secret_number();
 
