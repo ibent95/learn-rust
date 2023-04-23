@@ -28,7 +28,7 @@ fn main() {
 }
 
 fn print_hello_world() {
-    println!("Hello, world!");
+    println!("Hello, world! By @ibent95...");
 }
 
 fn guess_number_in_string() -> String {
