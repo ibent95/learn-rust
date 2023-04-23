@@ -1,6 +1,7 @@
 use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
+
 fn main() {
     print_hello_world();
     guest_number();
@@ -21,11 +22,16 @@ fn guest_number() {
         .read_line(&mut guess)
         .expect("Failed to read line");
 
+	let guess_number: i32 = guess
+        .trim()
+        .parse()
+        .expect("Wanted a number");
+
     println!("You guessed: {guess}");
     
     let s_n: i32 = generate_secret_number();
     
-    compare_guest_to_secret_number(s_n, guess.parse::<i32>().unwrap());
+    compare_guest_to_secret_number(s_n, guess_number);
 }
 
 fn generate_secret_number() -> i32 {    
