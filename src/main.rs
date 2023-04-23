@@ -9,12 +9,12 @@ fn main() {
 	loop {
 		let s_n: i32 = generate_secret_number();
 
-		let g_n: i32 = match guest_number_in_string().trim().parse() {
+		let g_n: i32 = match guess_number_in_string().trim().parse() {
 	        Ok(num) => num,
 	        Err(_) => continue,
 	    };
 
-		let result_of_compare: i32 = compare_guest_to_secret_number(s_n, g_n);
+		let result_of_compare: i32 = compare_guess_to_secret_number(s_n, g_n);
 
 		if result_of_compare == 1 {
     		println!("You win!");
@@ -31,7 +31,7 @@ fn print_hello_world() {
     println!("Hello, world!");
 }
 
-fn guest_number_in_string() -> String {
+fn guess_number_in_string() -> String {
     println!("Guess the number!");
 
     println!("Please input your guess.");
@@ -61,7 +61,7 @@ fn generate_secret_number() -> i32 {
     return secret_number;
 }
 
-fn compare_guest_to_secret_number(secret_number: i32, guess_number: i32) -> i32 {
+fn compare_guess_to_secret_number(secret_number: i32, guess_number: i32) -> i32 {
 	let result: i32 = match guess_number.cmp(&secret_number) {
         Ordering::Less => 0,
         Ordering::Greater => 2,
