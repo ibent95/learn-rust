@@ -5,18 +5,33 @@ use rand::Rng;
 fn main() {
     print_hello_world();
 
-    let g_n: i32 = guest_number();
-    
-    let s_n: i32 = generate_secret_number();
 
-    compare_guest_to_secret_number(s_n, g_n);
+	loop {
+		let s_n: i32 = generate_secret_number();
+
+		let g_n: i32 = match guest_number_in_string().trim().parse() {
+	        Ok(num) => num,
+	        Err(_) => continue,
+	    };
+
+		let result_of_compare: i32 = compare_guest_to_secret_number(s_n, g_n);
+
+		if result_of_compare == 1 {
+    		println!("You win!");
+    		break;
+		} else if result_of_compare == 2 {
+    		println!("Too big!")
+		} else {
+    		println!("Too small!");
+		}
+	}
 }
 
 fn print_hello_world() {
     println!("Hello, world!");
 }
 
-fn guest_number() -> i32 {
+fn guest_number_in_string() -> String {
     println!("Guess the number!");
 
     println!("Please input your guess.");
@@ -27,14 +42,14 @@ fn guest_number() -> i32 {
         .read_line(&mut guess)
         .expect("Failed to read line");
 
-	let guess_number: i32 = guess
-        .trim()
-        .parse()
+	let _guess_number: i32 = guess
+		.trim()
+		.parse()
         .expect("Wanted a number");
 
     println!("You guessed: {guess}");
     
-    return guess_number;
+    return guess;
 }
 
 fn generate_secret_number() -> i32 {    
@@ -46,10 +61,12 @@ fn generate_secret_number() -> i32 {
     return secret_number;
 }
 
-fn compare_guest_to_secret_number(secret_number: i32, guess_number: i32) {
-    match guess_number.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!"),
-    }
+fn compare_guest_to_secret_number(secret_number: i32, guess_number: i32) -> i32 {
+	let result: i32 = match guess_number.cmp(&secret_number) {
+        Ordering::Less => 0,
+        Ordering::Greater => 2,
+        Ordering::Equal => 1,
+    };
+
+    return result;
 }
