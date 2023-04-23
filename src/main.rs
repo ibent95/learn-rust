@@ -4,14 +4,19 @@ use rand::Rng;
 
 fn main() {
     print_hello_world();
-    guest_number();
+
+    let g_n: i32 = guest_number();
+    
+    let s_n: i32 = generate_secret_number();
+
+    compare_guest_to_secret_number(s_n, g_n);
 }
 
 fn print_hello_world() {
     println!("Hello, world!");
 }
 
-fn guest_number() {
+fn guest_number() -> i32 {
     println!("Guess the number!");
 
     println!("Please input your guess.");
@@ -29,9 +34,7 @@ fn guest_number() {
 
     println!("You guessed: {guess}");
     
-    let s_n: i32 = generate_secret_number();
-    
-    compare_guest_to_secret_number(s_n, guess_number);
+    return guess_number;
 }
 
 fn generate_secret_number() -> i32 {    
@@ -43,8 +46,8 @@ fn generate_secret_number() -> i32 {
     return secret_number;
 }
 
-fn compare_guest_to_secret_number(secret_number: i32, guess: i32) {
-    match guess.cmp(&secret_number) {
+fn compare_guest_to_secret_number(secret_number: i32, guess_number: i32) {
+    match guess_number.cmp(&secret_number) {
         Ordering::Less => println!("Too small!"),
         Ordering::Greater => println!("Too big!"),
         Ordering::Equal => println!("You win!"),
