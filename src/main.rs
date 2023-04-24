@@ -4,6 +4,7 @@ use rand::Rng;
 
 fn main() {
     print_hello_world();
+    print_variable_data_type();
 
 	loop {
 		let s_n: i32 = generate_secret_number();
@@ -28,6 +29,49 @@ fn main() {
 
 fn print_hello_world() {
     println!("Hello, world! By @ibent95...");
+}
+
+fn print_variable_data_type() {
+	let text: &str = "Text";
+	let character: char = 'Z';
+	let heart_eyed_cat: char = '😻';
+	let int: i32 = 123;
+	let float: f32 = 3.0;
+	let boolean: bool = true;
+	
+	let tuple: (i32, f64, u8) = (500, 6.4, 1);
+	let (t_x, t_y, t_z) = tuple;
+	let five_hundred = tuple.0;
+    let six_point_four = tuple.1;
+    let one = tuple.2;
+
+    let months: [&str; 12] = [
+    	"January", "February", "March", "April", "May", "June", "July",
+    	"August", "September", "October", "November", "December"
+	];
+    let numbers: [i32; 5] = [1, 2, 3, 4, 5];
+	let first: i32 = numbers[0];
+    let second: i32 = numbers[1];
+
+    println!("Text = {}", text);
+    println!("Character = {}", character);
+    println!("Heart eyed cat = {}", heart_eyed_cat);
+    println!("Integer Signed 32 = {}", int);
+    println!("Float Signed 32 = {}", float);
+    println!("Boolean = {}", boolean);
+
+    // println!("Tuple = {}", tuple);
+    println!("t_x = {}", t_x);
+    println!("t_y = {}", t_y);
+    println!("t_z = {}", t_z);
+    println!("Five hundred = {}", five_hundred);
+    println!("Six point four = {}", six_point_four);
+    println!("One = {}", one);
+
+    // println!("Months = {}", months);
+    // println!("Numbers = {}", numbers);
+    println!("First = {}", first);
+    println!("Second = {}", second);
 }
 
 fn guess_number_in_string() -> String {
